@@ -160,12 +160,11 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div id="alert1" class="alert alert-success alert-dismissible fade show text-center d-none my-alert"
-                        role="alert">
-                        <strong>Terimakasih!</strong>Pesan anda sudah kami terima🙏😊
+                    <div class="alert alert-secondary alert-dismissible fade show d-none my-alert text-center" role="alert">
+                        <strong>Terima kasih!</strong> Pesan anda sudah kami terima🙏😊
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    <form name="manajemen-pen.islam-contact-form">
+                    <form name="MPI-contact-form">
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama
                             </label>
@@ -178,13 +177,13 @@
                         <div class="mb-3">
                             <label for="pesan" class="form-label">Beri saya masukan
                             </label>
-                            <textarea class="form-control" id="pesan" rows="3" name="komentar publik"></textarea>
+                            <textarea class="form-control" id="pesan" rows="3" name="feedback"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
 
                         <button class="btn btn-primary btn-loading d-none" type="button" disabled>
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            Loading...
+                            <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+                            <span role="status">Loading...</span>
                         </button>
                     </form>
                 </div>
@@ -228,33 +227,33 @@
 
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwKFc9tK4gLNAAbDW3xFsGrIpg0rCZhscqe-1Ax85TkPrnY0U3K05N_L-fvhgU9DIBq/exec'
-        const alert1 = document.querySelector('.my-alert');
-        const form = document.forms['manajemen-pen.islam-contact-form'];
+        const form = document.forms["MPI-contact-form"];
         const btnKirim = document.querySelector('.btn-kirim');
         const btnLoading = document.querySelector('.btn-loading');
-        // const myALert = document.querySelector('.my-alert');
+        const myAlert = document.querySelector('.my-alert');
+
 
         form.addEventListener('submit', e => {
-            e.preventDefault();
+            e.preventDefault()
+
             //   ketika tombol submit diklik
-            // tampilakan tombol loading, hilangkan tombol kirim
+            // tampilkan tombol loading, hilangkan tombol kirim
             btnLoading.classList.toggle('d-none');
             btnKirim.classList.toggle('d-none');
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then((response) => {
-                    // tampilkan tombol kirim, hilangkan tombol loading
+                .then(response => {
+                    // tampilkan tombol kirim. hilangkan tombil loading
                     btnLoading.classList.toggle('d-none');
                     btnKirim.classList.toggle('d-none');
                     // tampilkan alert
-                    alert1.classList.toggle('d-none');
+                    myAlert.classList.toggle('d-none');
                     // reset formnya
                     form.reset();
-                    console.log('Success!', response);
+                    console.log('Success!', response)
                 })
-                .catch((error) => console.error('Error!', error.message));
+                .catch(error => console.error('Error!', error.message))
         });
     </script>
-
 </body>
 
 </html>
