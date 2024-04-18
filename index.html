@@ -35,7 +35,7 @@
       style="background-color: #262c37"
     >
       <div class="container">
-        <a class="navbar-brand" href="#">M P I</a>
+        <a class="navbar-brand" href="#" id="mpi">M P I</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -219,7 +219,7 @@
       <div class="container">
         <div class="row text-center mb-3">
           <div class="col">
-            <h2>Contact Me</h2>
+            <h2>Contact us</h2>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -258,7 +258,7 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="pesan" class="form-label">Beri saya masukan </label>
+                <label for="pesan" class="form-label">Beri Kami Masukan </label>
                 <textarea
                   class="form-control"
                   id="pesan"
@@ -302,8 +302,10 @@
     >
       <p>
         Created with <i class="bi bi-heart text-danger"></i> by
-        <a href="https://www.instagram.com/yadi21__/" class="text-white fw-bold"
-          >Yadi Daily</a
+        <a
+          href="https://www.instagram.com/yadi21__/"
+          class="text-white fw-normal"
+          >MuhamadApriyadi</a
         >
       </p>
     </footer>
@@ -324,6 +326,24 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/TextPlugin.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mpi = document.querySelector(".navbar-brand");
+
+        // Tambahkan event listener untuk menangani klik pada teks M P I
+        mpi.addEventListener("click", function (event) {
+          event.preventDefault(); // Mencegah tindakan bawaan hyperlink
+
+          // Sembunyikan scroll
+          document.documentElement.style.overflow = "hidden";
+
+          // Muat ulang halaman
+          window.location.href = window.location.origin;
+        });
+      });
+    </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Mendapatkan elemen menu hamburger dan menu navigasi
@@ -383,23 +403,47 @@
       form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        //   ketika tombol submit diklik
-        // tampilkan tombol loading, hilangkan tombol kirim
-        btnLoading.classList.toggle("d-none");
-        btnKirim.classList.toggle("d-none");
-        fetch(scriptURL, { method: "POST", body: new FormData(form) })
-          .then((response) => {
-            // tampilkan tombol kirim. hilangkan tombil loading
-            btnLoading.classList.toggle("d-none");
-            btnKirim.classList.toggle("d-none");
-            // tampilkan alert
-            myAlert.classList.toggle("d-none");
-            // reset formnya
-            form.reset();
-            console.log("Success!", response);
-          })
-          .catch((error) => console.error("Error!", error.message));
+        // Validasi form sebelum mengirim
+        if (validateForm()) {
+          // Ketika tombol submit diklik
+          // Tampilkan tombol loading, hilangkan tombol kirim
+          btnLoading.classList.toggle("d-none");
+          btnKirim.classList.toggle("d-none");
+          fetch(scriptURL, { method: "POST", body: new FormData(form) })
+            .then((response) => {
+              // Tampilkan tombol kirim. Hilangkan tombol loading
+              btnLoading.classList.toggle("d-none");
+              btnKirim.classList.toggle("d-none");
+              // Tampilkan alert
+              myAlert.classList.toggle("d-none");
+              // Reset formnya
+              form.reset();
+              console.log("Success!", response);
+
+              // Sembunyikan alert setelah 5 detik
+              setTimeout(() => {
+                myAlert.classList.add("d-none");
+              }, 5000); // 5 detik
+            })
+            .catch((error) => console.error("Error!", error.message));
+        }
       });
+
+      function validateForm() {
+        let isValid = true;
+        // Periksa setiap elemen input dalam form
+        form.querySelectorAll("input, textarea").forEach((input) => {
+          if (input.value.trim() === "") {
+            isValid = false;
+            // Jika ada yang kosong, tandai input tersebut sebagai invalid
+            input.classList.add("is-invalid");
+          } else {
+            // Jika input tidak kosong, hapus tanda invalid jika ada
+            input.classList.remove("is-invalid");
+          }
+        });
+        return isValid;
+      }
     </script>
   </body>
 </html>
