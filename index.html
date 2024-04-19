@@ -94,7 +94,7 @@
       <div class="container">
         <div class="row text-center mb-3">
           <div class="col">
-            <h2>About Me</h2>
+            <h2>About me</h2>
           </div>
         </div>
         <div class="row justify-content-center fs-5 text-left">
@@ -130,7 +130,7 @@
       <div class="container">
         <div class="row text-center mb-5" style="color: white">
           <div class="col">
-            <h2>This Is Our Profile</h2>
+            <h2>This is our profile</h2>
           </div>
         </div>
         <div class="row justify-content-center" style="color: black">
@@ -258,7 +258,7 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="pesan" class="form-label">Beri Kami Masukan </label>
+                <label for="pesan" class="form-label">Beri kami masukan </label>
                 <textarea
                   class="form-control"
                   id="pesan"
@@ -431,17 +431,34 @@
 
       function validateForm() {
         let isValid = true;
+
         // Periksa setiap elemen input dalam form
         form.querySelectorAll("input, textarea").forEach((input) => {
+          // Hapus pesan error jika ada
+          const errorElement =
+            input.parentNode.querySelector(".invalid-feedback");
+          if (errorElement) {
+            errorElement.remove();
+          }
+
           if (input.value.trim() === "") {
             isValid = false;
             // Jika ada yang kosong, tandai input tersebut sebagai invalid
             input.classList.add("is-invalid");
+
+            // Tampilkan pesan error untuk setiap kolom yang belum diisi
+            const errorElement = document.createElement("div");
+            errorElement.classList.add("invalid-feedback");
+            errorElement.innerText = "This is a required question";
+
+            // Letakkan pesan error di luar kolom di bagian bawah kiri
+            input.parentNode.insertBefore(errorElement, input.nextSibling);
           } else {
             // Jika input tidak kosong, hapus tanda invalid jika ada
             input.classList.remove("is-invalid");
           }
         });
+
         return isValid;
       }
     </script>
