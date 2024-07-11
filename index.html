@@ -72,7 +72,7 @@
     <!-- Jumbotron -->
     <section class="jumbotron text-center" style="color: white">
       <img
-        src="assets/images/1720542586961.jpg"
+        src="assets/images/WhatsApp Image 2024-07-10 at 22.03.51.jpeg"
         alt="Yadi"
         width="200"
         class="rounded-circle img-thumbnail"
@@ -313,6 +313,7 @@
     </section>
     <!-- Akhir Contact -->
 
+    <!-- Footer -->
     <footer
       class="p-5"
       style="background: #262c37; color: white; text-align: center"
@@ -327,6 +328,31 @@
       </p>
     </footer>
     <!-- Akhir Footer -->
+
+    <!-- Audio -->
+    <audio id="autoPlayAudio" autoplay>
+      <source
+        src="assets/audio/سبيل مريح محمد المقيط 2015 كلمات أ. وفاء محمد وأسماء بركات.mp3"
+        type="audio/mp3"
+      />
+    </audio>
+
+    <script>
+      function playAudio() {
+        const audioElement = document.getElementById("autoPlayAudio");
+        audioElement.play().catch(function () {
+          // Autoplay mungkin diblokir
+          console.log("Autoplay was prevented. User interaction is required.");
+        });
+      }
+
+      // Memainkan audio saat halaman selesai dimuat
+      window.addEventListener("load", playAudio);
+
+      // Memainkan audio saat pengguna berinteraksi dengan halaman (seperti klik)
+      document.addEventListener("click", playAudio);
+    </script>
+    <!-- Akhir audio -->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
