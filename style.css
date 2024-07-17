@@ -1,12 +1,19 @@
 .jumbotron {
-    padding-top: 6rem;
-    background-color: #1f242d;
+  padding-top: 6rem;
+  background-color: #1f242d;
 }
 
 #projects {
-    background-color: #1f242d;
+  background-color: #1f242d;
 }
 
 section {
-    padding-top: 5rem;
+  padding-top: 5rem;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  font-family: Montserrat, "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
